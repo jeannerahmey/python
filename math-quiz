@@ -1,0 +1,246 @@
+#Jeanne Rahmey
+
+import myfunctions
+import random
+
+#print(myfunctions.check_answer(1,1,2,"+"))
+
+#validating all the info                         
+while True:
+        probs = int(input("How many problems would you like to try? "))
+        if probs < 0:
+            print ("Invalid number, try again.")
+        else:
+            break
+while True:
+        width = int(input("How wide do you want your digits to be (5-10)? "))
+        if width < 5 or width > 10:
+            print ("Invalid width, try again.")
+        else:
+            break
+while True:
+    character = input("What character would you like to use? ")
+    if len(character) > 1:
+        print ("String too long, try again")
+    else:
+        break
+while True:
+    drill = str(input("Would you like to activate drill mode? yes or no: "))
+    if drill != "yes" and drill != "no":
+        print ("Invalid entry, answer yes or no")
+    else:
+        break
+        
+
+print()
+print("Here we go...")
+print()
+
+if drill == "yes":
+        total = 0
+        correct = 0
+        addition = 0
+        subtraction = 0
+        multiplication = 0
+        division = 0
+        extra_add = 0
+        extra_sub = 0
+        extra_mult = 0
+        extra_div = 0
+        correct_add = 0
+        correct_sub = 0
+        correct_mult = 0
+        correct_div = 0
+        for i in range (probs):
+            print("What is.....")
+            print()
+            first_num = random.randint (0, 9)
+            second_num = random.randint (0,9)
+            operator = random.randint (1,4)
+            while True:
+                #printing first number, then operator, then second number, then answer
+                myfunctions.print_number(first_num, width, character)
+                    
+                if operator == 1:
+                   str_operator = myfunctions.plus (width, character)
+                   addition +=1
+                   extra_add = addition - 1
+                   print()
+                   print (str_operator)
+                   print()
+                  
+                elif operator == 2:
+                   str_operator = myfunctions.minus (width, character)
+                   subtraction += 1
+                   extra_sub = subtraction - 1
+                   print()
+                   print (str_operator)
+                   print()
+                   
+                elif operator == 3:
+                   str_operator = myfunctions.multiply (width, character)
+                   multiplication += 1
+                   extra_mult = multiplication - 1
+                   print()
+                   print (str_operator)
+                   print()
+                   
+                elif operator == 4:
+                   division += 1
+                   extra_div = division - 1
+                   while first_num % second_num !=0:
+                        first_num = random.randint (0, 9)
+                        second_num = random.randint (0,9)
+                        if second_num == 0:
+                                first_num = random.randint (0, 9)
+                                second_num = random.randint (0,9)
+                                   
+                        
+                   str_operator = myfunctions.divide (width, character)
+                   print()
+                   print (str_operator)
+                   print()
+                   
+                        
+
+                myfunctions.print_number(second_num, width, character)
+
+                while True:
+                   answer = int(input("= "))
+                   if myfunctions.check_answer(first_num, second_num, answer, operator) == True:
+                        print("Correct!")
+                        correct += 1
+                        if operator == 1:
+                                correct_add += 1
+                        elif operator == 2:
+                                correct_sub += 1
+                        elif operator == 3:
+                                correct_mult += 1
+                        elif operator == 4:
+                                correct_div += 1
+                        break
+                
+                   else:
+                        print ("Sorry, try again")
+                        continue
+                break
+        print()
+        print ("Total addition problems presented:", addition)
+        print("Number of extra attempts needed:", extra_add)
+        print()
+        print ("Total subtraction problems presented:", subtraction)
+        print("Number of extra attempts needed:", extra_sub)
+        print()
+        print ("Total multiplication problems presented:", multiplication)
+        print("Number of extra attempts needed:", extra_mult)
+        print()
+        print ("Total division problems presented:", division)
+        print("Number of extra attempts needed:", extra_div)
+        print()
+                    
+                
+
+elif drill == "no":
+        total = 0
+        correct = 0
+        addition = 0
+        correct_add = 0
+        subtraction = 0
+        correct_sub = 0
+        multiplication = 0
+        correct_mult = 0
+        division = 0
+        correct_div = 0
+        
+        for i in range (probs):
+            print("What is.....")
+            print()
+            first_num = random.randint (0, 9)
+            second_num = random.randint (0,9)
+            operator = random.randint (1,4)
+
+            #printing first number, then operator, then second number, then answer
+            myfunctions.print_number(first_num, width, character)
+            
+            if operator == 1:
+                addition += 1
+                str_operator = myfunctions.plus (width, character)
+                print()
+                print (str_operator)
+                print()
+                
+            elif operator == 2:
+                subtraction += 1
+                str_operator = myfunctions.minus (width, character)
+                print()
+                print (str_operator)
+                print()
+                
+            elif operator == 3:
+                multiplication += 1
+                str_operator = myfunctions.multiply (width, character)
+                print()
+                print (str_operator)
+                print()
+                
+            elif operator == 4:
+                division += 1
+                while first_num % second_num !=0:
+                        first_num = random.randint (0, 9)
+                        second_num = random.randint (0,9)
+                        if second_num == 0:
+                                first_num = random.randint (0, 9)
+                                second_num = random.randint (0,9)
+
+                str_operator = myfunctions.divide (width, character)
+                print()
+                print (str_operator)
+                print()
+                
+
+            myfunctions.print_number(second_num, width, character)
+
+            answer = int(input("= "))
+            total += 1
+
+            if myfunctions.check_answer(first_num, second_num, answer, operator) == True:
+                print("Correct!")
+                correct += 1
+                if operator == 1:
+                        correct_add += 1
+                elif operator == 2:
+                        correct_sub += 1
+                elif operator == 3:
+                        correct_mult += 1
+                elif operator == 4:
+                        correct_div += 1
+            else:
+                print ("Sorry, that's not correct.")
+                
+            
+            print()
+
+        print ("You got", correct, "out of", total, "correct")
+        print ()
+        
+        print("Total addition problems presented:", addition)
+        print("Correct addition problems:", correct_add)
+        
+        print()
+        print("Total subtraction problems presented:", subtraction)
+        print("Correct subtraction problems:", correct_sub)
+        
+        print()
+        print("Total multiplication problems presented:", multiplication)
+        print("Correct multiplication problems:", correct_mult)
+        
+        print()
+        print("Total division problems presented:", division)
+        print("Correct division problems:", correct_div)
+        
+
+            
+
+
+                    
+
