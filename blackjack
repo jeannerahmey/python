@@ -1,0 +1,133 @@
+#Jeanne Rahmey
+#BlackJack
+
+import random
+
+#list of cards and corresponding values
+cards  = ['10 of Hearts', '9 of Hearts', '8 of Hearts', '7 of Hearts',
+    '6 of Hearts', '5 of Hearts', '4 of Hearts', '3 of Hearts',
+    '2 of Hearts', 'Ace of Hearts', 'King of Hearts',
+    'Queen of Hearts', 'Jack of Hearts', '10 of Diamonds',
+    '9 of Diamonds', '8 of Diamonds', '7 of Diamonds',
+    '6 of Diamonds', '5 of Diamonds', '4 of Diamonds',
+    '3 of Diamonds', '2 of Diamonds', 'Ace of Diamonds',
+    'King of Diamonds', 'Queen of Diamonds', 'Jack of Diamonds',
+    '10 of Clubs', '9 of Clubs', '8 of Clubs', '7 of Clubs',
+    '6 of Clubs', '5 of Clubs', '4 of Clubs', '3 of Clubs',
+    '2 of Clubs', 'Ace of Clubs', 'King of Clubs', 'Queen of Clubs',
+    'Jack of Clubs', '10 of Spades', '9 of Spades', '8 of Spades',
+    '7 of Spades', '6 of Spades', '5 of Spades', '4 of Spades',
+    '3 of Spades', '2 of Spades', 'Ace of Spades', 'King of Spades',
+    'Queen of Spades', 'Jack of Spades']
+
+values = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1,
+    10, 10, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1,
+    10, 10, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1,
+    10, 10, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 10, 10, 10]
+
+
+
+#getting indexes of actual cards
+index1 = random.randrange(len(cards))
+index2 = random.randrange(len(cards))
+
+#getting values of cards corresponding to the indexes
+value1 = values.pop(index1)
+value2 = values.pop(index2)
+total_val_player = value1 + value2
+
+#getting rid of used cards
+card1 = cards.pop(index1)
+card2 = cards.pop(index2)
+
+#printing what the player has
+player_hand = [card1, card2]
+print("Player hand:", player_hand, "is worth", total_val_player)
+
+
+def hit():
+    '''
+    I: no input
+    P: deals card and removes it from deck
+    O: returns index of the card
+    '''
+    index_hit = random.randrange(len(cards))
+    #getting values of cards corresponding to the indexes
+    value_hit = values.pop(index_hit)
+    #getting rid of used cards
+    card_hit = cards.pop(index_hit)
+    return index_hit
+
+
+while True:
+    move = input("Do you want to (h)it or (s)tand? ")
+    if move == "h":
+        index = hit()
+        new_card = cards[index]
+        new_val = values[index]
+        player_hand.append(new_card)
+        print("you drew", new_card)
+        print("player hand:", player_hand)
+        total_val_player += new_val
+        print ("Total value:", total_val_player)
+        print()
+        if total_val_player == 21:
+            print ("Blackjack! You win!")
+            break
+        if total_val_player > 21:
+            print("Bust, you lose!")
+            break
+            
+    elif move == "s":
+        #getting indexes of actual cards
+        index1 = random.randrange(len(cards))
+        index2 = random.randrange(len(cards))
+
+        #getting values of cards corresponding to the indexes
+        value1 = values.pop(index1)
+        value2 = values.pop(index2)
+        total_val_comp = value1 + value2
+
+        #getting rid of used cards
+        card1 = cards.pop(index1)
+        card2 = cards.pop(index2)
+
+        #printing what the computer has
+        comp_hand = [card1, card2]
+        print("Computer hand",comp_hand, " is worth ", total_val_comp)
+        
+        while True:
+            if total_val_comp > total_val_player and total_val_comp < 21:
+                print("Computer wins!")
+                break
+            c_index = hit()
+            new_card_c = cards[c_index]
+            new_val_c = values[c_index]
+            comp_hand.append(new_card_c)
+            print("Computer drew", new_card_c)
+            print("Computer hand:", comp_hand)
+            total_val_comp += new_val_c
+            print("Total: ", total_val_comp)
+            print()
+            if total_val_comp == 21:
+                print ("Blackjack! Computer wins!")
+                break
+            if total_val_comp > 21:
+                print("Computer busts, you win!")
+                break
+            
+        break
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
