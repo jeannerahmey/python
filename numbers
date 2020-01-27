@@ -1,0 +1,196 @@
+#Jeanne Rahmey
+
+def is_odd (num):
+    #input: a positive integer
+    # processing: determines if the supplied number is odd
+    # output: boolean
+    '''
+    (int)-> bool
+    '''
+    if num % 2 != 0:
+        return True
+    else:
+        return False
+
+#print(is_odd(2))
+
+def is_prime (num):
+    #input: a positive integer
+    # processing: determines if the supplied number is prime
+    # output: boolean
+    '''
+    (int)-> bool
+    '''
+    if num > 1:
+        for i in range (2, num):
+            if num % i == 0:
+                return False
+            else:
+                return True
+    
+#print(is_prime(11))
+
+def is_perfect (num):
+    #input: a positive integer
+    # processing: determines if the supplied number is perfect
+    # output: boolean
+    '''
+    (int)-> bool
+    '''
+    sum = 0
+    for i in range (1, num):
+        if num % i == 0:
+            sum += i
+    return sum == num
+
+#print(is_perfect (6))
+
+def is_abundant (num):
+    #input: a positive integer
+    # processing: determines if the supplied number is abundant
+    # output: boolean
+    '''
+    (int)-> bool
+    '''
+    total = 0
+    for i in range (1, num):
+        if (num % i == 0):
+            total += i
+            if total > num:
+                return True
+    if total > num:
+        return True
+    else:
+        return False
+
+#print (is_abundant (12))
+               
+
+
+
+while True:
+    print ("Main Menu")
+    print()
+    print ("1- Find all prime numbers within a given range")
+    print ("2- Find all perfect numbers within a given range")
+    print ("3- Find all abundant numbers within a given range")
+    print ("4- Chart all even, odd, prime, perfect and abundant numbers within a given range")
+    print ("5- Quit")
+    print()
+    
+    choice = input("Your choice: ")
+    
+    if choice == '1':
+        #validating first then calling function
+        while True:
+            start = int(input("Enter starting number (positive only): "))
+            if start < 0:
+                print ("Invalid, try again.")
+            else:
+                while True:
+                    end = int(input ("Enter ending number: "))
+                    if end < start:
+                        print ("Invalid, try again.")
+                    else:
+                        print ("All prime numbers between", start, "and", end)
+                        print ("###############")
+                        for i in range(start, end):
+                            if is_prime(i) == True:
+                                print (i)
+                        print ("###############")
+                        print()
+                        break
+            break
+
+    elif choice == '2':
+        while True:
+            start = int(input("Enter starting number (positive only): "))
+            if start < 0:
+                print ("Invalid, try again.")
+            else:
+                while True:
+                    end = int(input ("Enter ending number: "))
+                    if end < start:
+                        print ("Invalid, try again.")
+                    else:
+                        print ("All perfect numbers between", start, "and", end)
+                        print ("###############")
+                        for i in range(start, end):
+                            if is_perfect(i) == True:
+                                print (i)
+                        print ("###############")
+                        print()
+                        break
+            break
+
+
+
+
+    elif choice == '3':
+        while True:
+            start = int(input("Enter starting number (positive only): "))
+            if start < 0:
+                print ("Invalid, try again.")
+            else:
+                while True:
+                    end = int(input ("Enter ending number: "))
+                    if end < start:
+                        print ("Invalid, try again.")
+                    else:
+                        print ("All abundant numbers between", start, "and", end)
+                        print ("###############")
+                        for i in range(start, end):
+                            if is_abundant(i) == True:
+                                print (i)
+                        print ("###############")
+                        print()
+                        break
+            break
+
+
+    elif choice == '4':
+        while True:
+            start = int(input("Enter starting number (positive only): "))
+            if start < 0:
+                print ("Invalid, try again.")
+            else:
+                while True:
+                    end = int(input ("Enter ending number: "))
+                    if end < start:
+                        print ("Invalid, try again.")
+                    else:
+                        print("Number","Even","Odd", "Prime", "Perfect", "Abundant", sep = '\t')
+                        for i in range (start, end+1):
+                            print (i)
+                            if is_odd(i) != True:
+                                print ('\t', "x")
+                            if is_odd (i) == True:
+                                print ('\t', '\t', "x")
+                            if is_prime(i) == True:
+                                print ('\t', '\t', '\t', "x")
+                            if is_perfect(i) == True:
+                                print ('\t', '\t', '\t','\t', "x")
+                            if is_abundant(i) == True:
+                                print ('\t', '\t','\t','\t','\t', "x")
+                            
+                        break
+                                      
+            break
+
+
+
+    elif choice == '5':
+        break
+        
+                    
+    else:
+        print ("I don't understand that...")
+        print ()
+
+    
+                
+
+
+
+
+   
