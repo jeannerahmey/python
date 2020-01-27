@@ -1,10 +1,4 @@
 #Jeanne Rahmey
-#CSCI-2
-#Ass. 7
-#Prob 2 a, b
-
-
-#Prob 2A
 
 import random
 
@@ -90,7 +84,6 @@ print (newword2, "shifted by -2 is", unscrambled2)
 
 
 ###################################
-#Prob 2B
 
 while True:
     option = input("encode, decode, or quit?: ")
