@@ -27,7 +27,7 @@ values = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1,
 
 
 
-#getting indexes of actual cards
+#getting indicies of actual cards
 index1 = random.randrange(len(cards))
 index2 = random.randrange(len(cards))
 
